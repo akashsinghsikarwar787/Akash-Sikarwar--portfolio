@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akash Singh Sikarwar — Video Editor</title>
+<meta name="description" content="Akash Singh Sikarwar — Video Editor based in Indore, India. Short-form, talking-head, and brand video editing, motion graphics, and color grading.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2314161a'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='700' fill='%23e8a33d' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -316,19 +318,24 @@
   .tracks{border-top:1px solid var(--line);}
   .track{
     display:grid;
-    grid-template-columns:120px 1fr;
+    grid-template-columns:120px 200px 1fr;
     gap:24px;
     align-items:center;
     padding:22px 0;
     border-bottom:1px solid var(--line);
   }
-  @media (max-width:640px){ .track{grid-template-columns:1fr;} }
+  @media (max-width:720px){ .track{grid-template-columns:100px 1fr; row-gap:14px;} .track-bar-wrap{grid-column:1 / -1;} }
   .track-label{
     font-family:'JetBrains Mono', monospace;
     font-size:0.72rem;
     color:var(--text-faint);
   }
-  .track-bar-wrap{position:relative; height:34px;}
+  .track-name{
+    font-size:0.95rem;
+    font-weight:500;
+    color:var(--text);
+  }
+  .track-bar-wrap{position:relative; height:10px;}
   .track-bar-bg{
     position:absolute; inset:0;
     background:var(--bg-card);
@@ -337,14 +344,7 @@
   .track-bar-fill{
     position:absolute; top:0; left:0; bottom:0;
     background:linear-gradient(90deg, var(--teal), var(--amber));
-    opacity:0.85;
-  }
-  .track-name{
-    position:absolute; top:0; left:16px; height:100%;
-    display:flex; align-items:center;
-    font-size:0.9rem; font-weight:500;
-    z-index:2;
-    mix-blend-mode:difference;
+    opacity:0.9;
   }
 
   /* ===== Tools ===== */
@@ -470,31 +470,47 @@
     position:relative;
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
+    background:#000;
+  }
+  .proj-video{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    background:#000;
   }
   .proj-thumb::after{
     content:"";
     position:absolute; inset:0;
-    background:
-      repeating-linear-gradient(115deg, rgba(0,0,0,0.15) 0 2px, transparent 2px 26px);
+    pointer-events:none;
+    background:linear-gradient(180deg, rgba(20,22,26,0) 60%, rgba(20,22,26,0.55) 100%);
   }
   .proj-play{
     width:52px; height:52px;
     border:1px solid rgba(236,232,225,0.5);
     border-radius:50%;
     display:flex; align-items:center; justify-content:center;
-    z-index:2;
-    background:rgba(20,22,26,0.35);
-    transition:background 0.25s, border-color 0.25s;
+    z-index:3;
+    background:rgba(20,22,26,0.45);
+    transition:background 0.25s, border-color 0.25s, opacity 0.25s, transform 0.25s;
+    cursor:pointer;
+    position:relative;
   }
   .proj-card:hover .proj-play{ background:var(--amber); border-color:var(--amber);}
   .proj-play svg{width:16px; height:16px; fill:var(--text); margin-left:2px;}
   .proj-card:hover .proj-play svg{fill:#14161a;}
+  .proj-thumb.is-playing .proj-play,
+  .proj-thumb.is-playing .proj-tc{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(0.9);
+  }
   .proj-tc{
     position:absolute; bottom:10px; left:12px;
     font-family:'JetBrains Mono', monospace;
     font-size:0.65rem;
     color:rgba(236,232,225,0.85);
-    z-index:2;
+    z-index:3;
+    transition:opacity 0.25s, transform 0.25s;
   }
   .proj-body{padding:20px 22px 24px;}
   .proj-cat{
@@ -608,8 +624,7 @@
       <div>Based in<strong>Indore, MP</strong></div>
     </div>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="https://drive.google.com/drive/folders/1Rw5c5t_117qWkL-NCLqGJJQyeYCsvKgw?usp=sharing" target="_blank" rel="noopener">▶ Watch Showreel</a>
-      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      <a class="btn btn-primary" href="#contact">Get in touch</a>
     </div>
   </div>
   <div>
@@ -647,50 +662,50 @@
   <div class="tracks reveal">
     <div class="track">
       <div class="track-label">TRACK 01</div>
+      <div class="track-name">Short-Form Editing</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:92%"></div>
-        <div class="track-name">Short-Form Editing</div>
       </div>
     </div>
     <div class="track">
       <div class="track-label">TRACK 02</div>
+      <div class="track-name">Long-Form / Talking-Head Editing</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:85%"></div>
-        <div class="track-name">Long-Form / Talking-Head Editing</div>
       </div>
     </div>
     <div class="track">
       <div class="track-label">TRACK 03</div>
+      <div class="track-name">Motion Graphics (After Effects)</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:88%"></div>
-        <div class="track-name">Motion Graphics (After Effects)</div>
       </div>
     </div>
     <div class="track">
       <div class="track-label">TRACK 04</div>
+      <div class="track-name">Color Grading (DaVinci Resolve)</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:75%"></div>
-        <div class="track-name">Color Grading (DaVinci Resolve)</div>
       </div>
     </div>
     <div class="track">
       <div class="track-label">TRACK 05</div>
+      <div class="track-name">Retention Editing &amp; Pacing</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:80%"></div>
-        <div class="track-name">Retention Editing &amp; Pacing</div>
       </div>
     </div>
     <div class="track">
       <div class="track-label">TRACK 06</div>
+      <div class="track-name">Sound Design</div>
       <div class="track-bar-wrap">
         <div class="track-bar-bg"></div>
         <div class="track-bar-fill" style="width:70%"></div>
-        <div class="track-name">Sound Design</div>
       </div>
     </div>
   </div>
@@ -776,44 +791,53 @@
   <h2 class="reveal">Recent projects</h2>
   <div class="proj-grid reveal">
 
-    <a class="proj-card" href="https://drive.google.com/drive/folders/1Rw5c5t_117qWkL-NCLqGJJQyeYCsvKgw?usp=sharing" target="_blank" rel="noopener">
-      <div class="proj-thumb" style="background:linear-gradient(135deg, #2a3d3a, #14161a);">
-        <div class="proj-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="proj-tc">00:00:23:11</div>
+    <div class="proj-card">
+      <div class="proj-thumb" id="thumb1">
+        <video class="proj-video" id="video1" poster="videos/talking_head_poster.jpg" preload="none" playsinline controls>
+          <source src="videos/talking_head.mp4" type="video/mp4">
+        </video>
+        <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video1','thumb1')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="proj-tc">00:00:45:00</div>
       </div>
       <div class="proj-body">
-        <div class="proj-cat">Tech / Short-Form</div>
-        <h3>Tech Explainer Series</h3>
-        <p>Short-form cuts from long tech reviews, edited for fast retention and clarity.</p>
+        <div class="proj-cat">Talking Head</div>
+        <h3>Talking Head Edit</h3>
+        <p>Straight-to-camera edit with clean cuts, pacing, and sound design to keep a single speaker engaging start to finish.</p>
       </div>
-    </a>
+    </div>
 
-    <a class="proj-card" href="https://drive.google.com/drive/folders/1Rw5c5t_117qWkL-NCLqGJJQyeYCsvKgw?usp=sharing" target="_blank" rel="noopener">
-      <div class="proj-thumb" style="background:linear-gradient(135deg, #3d2f1f, #14161a);">
-        <div class="proj-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="proj-tc">00:01:04:02</div>
+    <div class="proj-card">
+      <div class="proj-thumb" id="thumb2">
+        <video class="proj-video" id="video2" poster="videos/brand_poster.jpg" preload="none" playsinline controls>
+          <source src="videos/brand.mp4" type="video/mp4">
+        </video>
+        <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video2','thumb2')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="proj-tc">00:00:29:00</div>
       </div>
       <div class="proj-body">
         <div class="proj-cat">Corporate / Brand</div>
         <h3>Brand Campaign Film</h3>
         <p>End-to-end edit and color grade for a brand promotional piece, from assembly to final finish.</p>
       </div>
-    </a>
+    </div>
 
-    <a class="proj-card" href="https://drive.google.com/drive/folders/1Rw5c5t_117qWkL-NCLqGJJQyeYCsvKgw?usp=sharing" target="_blank" rel="noopener">
-      <div class="proj-thumb" style="background:linear-gradient(135deg, #2a2f3d, #14161a);">
-        <div class="proj-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        <div class="proj-tc">00:00:47:19</div>
+    <div class="proj-card">
+      <div class="proj-thumb" id="thumb3">
+        <video class="proj-video" id="video3" poster="videos/before_after_poster.jpg" preload="none" playsinline controls>
+          <source src="videos/before_after.mp4" type="video/mp4">
+        </video>
+        <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video3','thumb3')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="proj-tc">00:00:18:00</div>
       </div>
       <div class="proj-body">
-        <div class="proj-cat">Talking Head / Vlog</div>
-        <h3>Weekly Vlog Series</h3>
-        <p>Ongoing talking-head edit with consistent pacing, graphics package, and sound design.</p>
+        <div class="proj-cat">Before / After</div>
+        <h3>Long Form to Short Form</h3>
+        <p>Full-length raw footage cut down into a fast, retention-focused short — a direct before/after of the editing process.</p>
       </div>
-    </a>
+    </div>
 
   </div>
-  <p class="proj-note">Full cuts and more client work in the <a href="https://drive.google.com/drive/folders/1Rw5c5t_117qWkL-NCLqGJJQyeYCsvKgw?usp=sharing" target="_blank" rel="noopener">showreel drive folder →</a></p>
+
 </section>
 
 <footer id="contact">
@@ -837,6 +861,20 @@
     <span>INDORE, MADHYA PRADESH, INDIA</span>
   </div>
 </footer>
+
+<script>
+  function playProjVideo(videoId, thumbId){
+    const video = document.getElementById(videoId);
+    const thumb = document.getElementById(thumbId);
+    video.play();
+    thumb.classList.add('is-playing');
+  }
+  document.querySelectorAll('.proj-video').forEach(v=>{
+    v.addEventListener('pause', ()=> v.closest('.proj-thumb').classList.remove('is-playing'));
+    v.addEventListener('ended', ()=> v.closest('.proj-thumb').classList.remove('is-playing'));
+    v.addEventListener('play', ()=> v.closest('.proj-thumb').classList.add('is-playing'));
+  });
+</script>
 
 <script>
   // Playhead scroll progress + timecode readout
