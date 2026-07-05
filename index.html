@@ -466,11 +466,12 @@
     transform:translateY(-4px);
   }
   .proj-thumb{
-    aspect-ratio:16/10;
+    aspect-ratio:9/16;
     position:relative;
     display:flex; align-items:center; justify-content:center;
     overflow:hidden;
     background:#000;
+    max-height:520px;
   }
   .proj-video{
     position:absolute; inset:0;
@@ -793,7 +794,7 @@
 
     <div class="proj-card">
       <div class="proj-thumb" id="thumb1">
-        <video class="proj-video" id="video1" poster="talking_head_poster.jpg" preload="none" playsinline controls>
+        <video class="proj-video" id="video1" poster="talking_head_poster.jpg" preload="none" playsinline>
           <source src="talking_head.mp4" type="video/mp4">
         </video>
         <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video1','thumb1')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
@@ -808,7 +809,7 @@
 
     <div class="proj-card">
       <div class="proj-thumb" id="thumb2">
-        <video class="proj-video" id="video2" poster="brand_poster.jpg" preload="none" playsinline controls>
+        <video class="proj-video" id="video2" poster="brand_poster.jpg" preload="none" playsinline>
           <source src="brand.mp4" type="video/mp4">
         </video>
         <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video2','thumb2')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
@@ -823,7 +824,7 @@
 
     <div class="proj-card">
       <div class="proj-thumb" id="thumb3">
-        <video class="proj-video" id="video3" poster="before_after_poster.jpg" preload="none" playsinline controls>
+        <video class="proj-video" id="video3" poster="before_after_poster.jpg" preload="none" playsinline>
           <source src="before_after.mp4" type="video/mp4">
         </video>
         <button class="proj-play" aria-label="Play video" onclick="playProjVideo('video3','thumb3')"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
@@ -866,6 +867,7 @@
   function playProjVideo(videoId, thumbId){
     const video = document.getElementById(videoId);
     const thumb = document.getElementById(thumbId);
+    video.controls = true;
     video.play();
     thumb.classList.add('is-playing');
   }
